@@ -5,6 +5,7 @@ WITH incident_base AS (
         CAST(CAST(incident_date AS DATE) AS STRING) AS date_key,
         address AS location_key,
         call_type AS incident_type_key,
+        battalion AS battalion_key,
         data_as_of,
         data_loaded_at
     FROM {{ ref('stg_fire_incidents') }}

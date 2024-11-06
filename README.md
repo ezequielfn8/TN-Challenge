@@ -16,7 +16,7 @@ Regarding the transformation process, this dbt project structures raw fire incid
 ## Data Model
 - **Fact Table**: `fact_fire_incidents`
   - Stores incident-specific metrics, linked to dimension tables by foreign keys.
-- **Dimension Tables**: `dim_date`, `dim_location`, `dim_incident_type`, `dim_unit`, `dim_damage_outcome`
+- **Dimension Tables**: `dim_date`, `dim_district`, `dim_incident_type`, `dim_unit`, `dim_damage_outcome`, `dim_battalion`
 
 ## Important notes:
 - The aim of the project was to demonstrate the approach used to find a solution for the challenge in one day of work, rather than developing a short solution and having more time testing it. The reason of this is to avoid having to consume time configuring free/trial versions of DBT, Airflow, and Snowflake.

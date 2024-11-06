@@ -1,5 +1,5 @@
 
-WITH locations AS (
+WITH district AS (
     SELECT DISTINCT
         address AS location_key,
         city,
@@ -12,4 +12,4 @@ WITH locations AS (
     FROM {{ ref('stg_fire_incidents') }}
 )
 
-SELECT * FROM locations;
+SELECT * FROM disctrict;
