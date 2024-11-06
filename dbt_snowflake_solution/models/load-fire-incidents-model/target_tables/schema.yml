@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: fact_fire_incidents
+    description: "Fact table containing fire incident metrics, linked to dimension tables by foreign keys."
+    columns:
+      - name: incident_number
+        description: "Unique identifier for each fire incident."
+      - name: date_key
+        description: "Foreign key to dim_date."
+      - name: location_key
+        description: "Foreign key to dim_location."
+      - name: incident_type_key
+        description: "Foreign key to dim_incident_type."
+      - name: damage_outcome_key
+        description: "Foreign key to dim_damage_outcome."
+      - name: unit_key
+        description: "Foreign key to dim_unit."
+      - name: response_time_seconds
+        description: "Time in seconds from alarm to first unit arrival."
+      - name: data_as_of
+        description: "Date indicating when the data was last updated."
+
+  - name: dim_date
+    description: "Dimension table for date attributes."
+    columns:
+      - name: date_key
+        description: "Primary key for dim_date."
+      - name: year
+        description: "Year of the incident."
+      - name: quarter
+        description: "Quarter of the year."
+      - name: month
+        description: "Month of the year."
+      - name: day_of_week
+        description: "Day of the week (1 = Sunday, 7 = Saturday)."
+
+  - name: dim_location
+    description: "Dimension table for location details of incidents."
+    columns:
+      - name: location_key
+        description: "Primary key for dim_location."
+      - name: address
+        description: "Incident address."
+      - name: battalion
+        description: "Battalion responsible for the incident area."
+
+  #...

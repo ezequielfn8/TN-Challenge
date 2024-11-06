@@ -53,12 +53,12 @@ class DataExtractor:
 
             if response.status_code == 200:
                 data = pd.read_csv(io.StringIO(response.text))
-                if data.empty or params["$offset"] >= 10000:  # Limit for testing
+                if data.empty: 
                     logger.info("Data fetch limit reached or no more data.")
                     break
                 all_data.append(data)
                 params["$offset"] += params["$limit"]
-                time.sleep(1)  # Avoid API rate limits
+                time.sleep(1)
             else:
                 logger.error(f"Failed to fetch data: {response.status_code}")
                 break

@@ -41,7 +41,7 @@ models:
       +materialized: view
       +stg_fire_incidents:
         +materialized: view
-    target:
+    target_tables:
       +materialized: incremental
       +incremental_strategy: merge
       fact_fire_incidents:
