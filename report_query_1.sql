@@ -2,20 +2,21 @@
 
 WITH response_time AS (
     SELECT
-        f.location_key,
+        f.district_key,
         d.year,
         d.month,
         d.day_of_week,
         d.hour AS incident_hour,
-        l.battalion,
+        b.battalion,  -- Get battalion information from dim_battalion
         AVG(f.response_time_seconds) AS avg_response_time_seconds,
         COUNT(f.incident_number) AS total_incidents
     FROM FACT_FIRE_INCIDENTS f
     JOIN DIM_DATE d ON f.date_key = d.date_key
-    JOIN DIM_LOCATION l ON f.location_key = l.location_key
+    JOIN DIM_DISTRICT l ON f.district_key = l.district_key
+    JOIN DIM_BATTALION b ON f.battalion_key = b.battalion_key  -- Join with battalion dimension
     WHERE f.response_time_seconds IS NOT NULL
     GROUP BY
-        f.location_key, d.year, d.month, d.day_of_week, d.hour, l.battalion
+        f.district_key, d.year, d.month, d.day_of_week, d.hour, b.battalion
 )
 
 SELECT
@@ -31,4 +32,4 @@ SELECT
     END AS performance_category
 FROM response_time
 GROUP BY battalion, incident_hour, day_of_week
-ORDER BY battalion, incident_hour, day_of_week;
+ORDER BY
